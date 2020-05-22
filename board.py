@@ -88,10 +88,10 @@ class Board:
                 tree.insert_left(board1)
 
             else:
-                x = choice([possible.keys()])
+                x = choice([i for i in possible.keys()])
                 new_move1 = possible[x]
                 del possible[x]
-                new_move2 = possible[choice([possible.keys()])]
+                new_move2 = possible[choice([i for i in possible.keys()])]
 
                 board1 = deepcopy(board)
                 board2 = deepcopy(board)
