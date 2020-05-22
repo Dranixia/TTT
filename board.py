@@ -8,6 +8,7 @@ Python 3.8
 from linked_binary_tree import BinaryTree
 from copy import deepcopy
 from random import choice
+from TTT.tree_but_not_binary import Tree
 
 
 class Board:
@@ -60,11 +61,11 @@ class Board:
         :return: dict
         """
         dct = dict()
-        for x in range(3):
-            for y in range(3):
+        for x in range(len(self.board)):
+            for y in range(len(self.board[x])):
                 if self.board[x][y] == 0:
                     if dct.keys():
-                        key = max(dct.keys()) + 1
+                        key = max(list(dct.keys())) + 1
                     else:
                         key = 1
                     dct[key] = (x, y)
@@ -77,7 +78,7 @@ class Board:
         """
         tree = BinaryTree(self.board)
 
-        def recursion(board: Board, tree:BinaryTree):
+        def recursion(board: Board, tree: BinaryTree):
             possible = board.available()
             if len(possible) == 1:
                 board1 = deepcopy(board)
@@ -85,35 +86,28 @@ class Board:
                     board1.board[possible[1][0]][possible[1][1]] = "o"
                 else:
                     board1.board[possible[1][0]][possible[1][1]] = "x"
-                tree.insert_left(board1)
+                tree.insert_right(board1)
 
             else:
                 x = choice([i for i in possible.keys()])
                 new_move1 = possible[x]
                 del possible[x]
                 new_move2 = possible[choice([i for i in possible.keys()])]
-
                 board1 = deepcopy(board)
                 board2 = deepcopy(board)
-
                 if self.prev == "x":
-                    nextm = "o"
+                    next = "o"
                     self.prev = "o"
                 else:
-                    nextm = "x"
+                    next = "x"
                     self.prev = "x"
-
-                board1.board[new_move1[0]][new_move1[1]] = nextm
-                board2.board[new_move2[0]][new_move2[1]] = nextm
-
+                board1.board[new_move1[0]][new_move1[1]] = next
+                board2.board[new_move2[0]][new_move2[1]] = next
                 tree.insert_left(board1)
                 tree.insert_right(board2)
-
                 recursion(board1, tree.get_left())
                 recursion(board2, tree.get_right())
-
         recursion(self, tree)
-
         left_tree_points = self.points(tree.left.leaves())
         right_tree_points = self.points(tree.right.leaves())
 

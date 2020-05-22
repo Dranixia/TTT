@@ -6,11 +6,11 @@ Python 3.8
 
 
 class BinaryTree:
-    """ Class for binary tree representation. """
-
+    """
+    Class to represent binary tree.
+    """
     def __init__(self, root):
         """
-        (BinaryTree) -> None
         Initialize binary tree.
         """
         self.key = root
@@ -19,8 +19,9 @@ class BinaryTree:
 
     def insert_left(self, new_node):
         """
-        (BinaryTree) -> NoneType
-        Insert new node to the left parameter.
+        Make a left branch.
+        :new_node: object
+        :return: None
         """
         if self.left is None:
             self.left = BinaryTree(new_node)
@@ -31,8 +32,9 @@ class BinaryTree:
 
     def insert_right(self, new_node):
         """
-        (BinaryTree) -> NoneType
-        Insert new node to the right parameter.
+        Make a right branch.
+        :new_node: object
+        :return: None
         """
         if self.right is None:
             self.right = BinaryTree(new_node)
@@ -43,22 +45,21 @@ class BinaryTree:
 
     def get_right(self):
         """
-        (BinaryTree) -> obj/NoneType
-        Return value of the right parameter.
+        Get a right branch.
+        :return: BinaryTree
         """
         return self.right
 
     def get_left(self):
         """
-        (BinaryTree) -> obj/NoneType
-        Return value of the left parameter.
+        Get a left branch.
+        :return: BinaryTree
         """
         return self.left
 
     def leaves(self):
         """
-        (BinaryTree) -> lst
-        Return list of the leaves of the tree.
+        Return list of the leaves.
         """
         lst = []
 
