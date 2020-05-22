@@ -8,7 +8,6 @@ Python 3.8
 from linked_binary_tree import BinaryTree
 from copy import deepcopy
 from random import choice
-from TTT.tree_but_not_binary import Tree
 
 
 class Board:
