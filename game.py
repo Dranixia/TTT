@@ -1,3 +1,10 @@
+"""
+Butynets' Danylo
+Task 3 Lab 13 UCU
+Python 3.8
+"""
+
+
 from board import Board
 
 
